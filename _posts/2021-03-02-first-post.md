@@ -30,3 +30,4 @@ const [value, value2] = useMyselector(state => [state.value1, state.value2]);
 const [value4] = useMyselector(state => [state.value4])
 
 ```
+상태값을 여러개 사용하는 또다른 방법은 reselect를 이용하는 방법이 있다.
