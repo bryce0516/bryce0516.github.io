@@ -31,3 +31,41 @@ const [value4] = useMyselector(state => [state.value4])
 
 ```
 상태값을 여러개 사용하는 또다른 방법은 reselect를 이용하는 방법이 있다.
+
+
+```
+import { createSelector } from 'reselect'
+
+const getFriends = state => state.friend.friends;
+const getAgeLimit = state => state.friend.ageLimit;
+const getAgeShowLimit = state => state.friend.showLimit;
+export const getFriendWithAgeLimit  = createSelector(
+  [ getFriends, getAgeLimit ],
+  (friends, ageLimit) => friends.filter(item => item.age <= ageLimit),
+)
+
+export const getFriendWithAgeShowLimit  = createSelector(
+  [ getFriendWithAgeLimit , geShowtAgeLimit ],
+  ( friendsWithAgeLimit, showLimit ) => friendsWithAgeLimit.slice(0, showLimit),
+)
+
+### 렌더링 부분
+
+const [ 
+  ageLimit,
+  showLimit,
+  friendsWithAgeLimit,
+  friendsWithAgeShowLimit
+] = useSelector(
+  state => [
+    getAgeLimit(state),
+    getShowLimit(state),
+    getFriendsWithAgeLimit(state),
+    getFriendsWithAgeShowLimit(state)
+  ],
+  shallowEqual,
+)
+
+```
+
+이렇게 작성을하면 값으로 넘어오는 변수들이 변경되었을때만 실행을 하기때문에 메모이제이션 기능을 쓴다.
