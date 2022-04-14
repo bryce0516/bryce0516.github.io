@@ -2,12 +2,12 @@
 title: "Post: nginx"
 last_modified_at: 2022-04-13T16:20:02-05:00
 categories:
-  - nodejs
+  - nginx
 tags:
 
 ---
 
-# aws 에서 nestjs 설치중 발생한 문제
+# nginx config
 ```
 conf.d
 server {
